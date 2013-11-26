@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    
+    <link rel="stylesheet" href="css/topcoat/topcoat-mobile-light.css">
+    <link rel="stylesheet" href="css/app.css">
+    
+    <script src="js/lib/fastclick.js"></script>
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/angular_animate.js"></script>
+    
+    <script src="todo.js"></script>
+   
+   <script>
+        // initialize myApp
+        var myApp = angular.module('myApp', ['ngAnimate']);
+        
+        // fast click
+        window.addEventListener('load', function() {
+            FastClick.attach(document.body);
+        }, false);
+    </script>
+
+    
+</head>
+<body ng-controller="TodoController">
+    
+    <!-- Navigation Bar -->
+    <div class="topcoat-navigation-bar">
+        <div class="topcoat-navigation-bar__item center full">
+            <h1 class="topcoat-navigation-bar__title">Todo</h1>
+        </div>
+    </div>
+    
+    <!-- List -->
+    <div class="topcoat-list">
+    
+        <h3 class="topcoat-list__header">
+            <form name="todoForm" ng-submit="addTodo(newTodo);">
+                <input type="text" ng-model="newTodo" class="topcoat-text-input" required>
+                <button type="submit" class="topcoat-button float-right" ng-disabled="!todoForm.$valid">+</button>
+            </form>
+        </h3>
+    
+        <ul class="topcoat-list__container">
+            <li class="topcoat-list__item my-repeat-animation" ng-repeat="todo in todos">
+                <h3 class="float-left">{{todo.text}}</h3>
+                <span class="topcoat-icon-button--quiet float-right" ng-click="removeTodo($index)">X</span>
+                <div class="clear"></div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
